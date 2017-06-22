@@ -4,41 +4,26 @@ class RPNParty
   def initialize(calculation)
     @result = nil
     @stack = []
-    parse(calculation)
+    evaluate(calculation)
   end
 
   private
 
-  def parse(calculation)
-    tokens = tokenize(calculation)
-    evaluate(tokens)
-  end
-
-  def tokenize(string)
+  def evaluate(string)
     string.scan(/\d+|\+|\-|\*|\//).map do |token|
       case token
       when /\d+/
-        token.to_i
-      when /[\+\-\*\/]/
-        token.to_sym
+        @stack.push token.to_i
+      when /\+/
+        add
+      when /\-/
+        subtract
+      when /\*/
+        multiply
+      when /\//
+        divide
       else
         raise "Invalid input: #{token}"
-      end
-    end
-  end
-
-  def evaluate(arguments)
-    arguments.each do |argument|
-      if argument.is_a? Integer
-        @stack.push argument
-      elsif argument == :+
-        add
-      elsif argument == :-
-        subtract
-      elsif argument == :*
-        multiply
-      elsif argument == :/
-        divide
       end
     end
   end
