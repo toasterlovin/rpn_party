@@ -8,8 +8,8 @@ class RPNPartyTest < Minitest::Test
   end
 
   def test_subtraction
-    calc = RPNParty.new('3 3 -')
-    assert_equal 0, calc.result
+    calc = RPNParty.new('6 3 -')
+    assert_equal 3, calc.result
   end
 
   def test_multiplication
@@ -18,7 +18,7 @@ class RPNPartyTest < Minitest::Test
   end
 
   def test_division
-    calc = RPNParty.new('3 3 /')
-    assert_equal 1, calc.result
+    calc = RPNParty.new('6 3 /')
+    assert_equal 2, calc.result
   end
 end
