@@ -38,8 +38,10 @@ class RPNPartyTest < Minitest::Test
   end
 
   def test_does_not_allow_zero_division
-    assert_raises ZeroDivisionError do
+    error = assert_raises ZeroDivisionError do
       RPNParty.new('3 0 /')
     end
+
+    assert_equal 'Cannot divide 3.0 by 0', error.message
   end
 end
