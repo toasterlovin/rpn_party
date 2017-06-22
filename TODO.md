@@ -8,6 +8,7 @@ Todo List
   <del>- Decimals</del>
   <del>- Allow successive calculations</del>
   <del>- Initial calculation is optional</del>
+  - Negative number support
 4. Error handling
   <del>- Divide-by-zero</del>
   - Unrecognized characters
