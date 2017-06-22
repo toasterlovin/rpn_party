@@ -12,10 +12,8 @@ class RPNParty
     end
   end
 
-  private
-
-  def evaluate(string)
-    string.scan(/\d+(?:\.\d+)?|\+|\-|\*|\//).map do |token|
+  def evaluate(calculation)
+    calculation.scan(/\d+(?:\.\d+)?|\+|\-|\*|\//).map do |token|
       case token
       when /\d+/
         @stack.push token.to_f
@@ -32,6 +30,8 @@ class RPNParty
       end
     end
   end
+
+  private
 
   def add
     first_value, second_value = @stack.pop(2)

@@ -6,7 +6,7 @@ Todo List
 3. Flesh out features
   <del>- Multi-digit operands</del>
   <del>- Decimals</del>
-  - Allow successive calculations
+  <del>- Allow successive calculations</del>
   - Initial calculation is optional
 4. Error handling
   <del>- Divide-by-zero</del>
