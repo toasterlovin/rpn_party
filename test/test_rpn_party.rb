@@ -22,6 +22,11 @@ class RPNPartyTest < Minitest::Test
     assert_equal 2, calc.result
   end
 
+  def test_multi_digit_operands
+    calc = RPNParty.new('33 3 /')
+    assert_equal 11, calc.result
+  end
+
   def test_nested_operations
     calc = RPNParty.new('3 3 + 3 * 3 - 3 /')
     assert_equal 5, calc.result
