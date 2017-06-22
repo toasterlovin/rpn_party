@@ -15,10 +15,10 @@ class RPNParty
   private
 
   def evaluate(string)
-    string.scan(/\d+|\+|\-|\*|\//).map do |token|
+    string.scan(/\d+(?:\.\d+)?|\+|\-|\*|\//).map do |token|
       case token
       when /\d+/
-        @stack.push token.to_i
+        @stack.push token.to_f
       when /\+/
         add
       when /\-/

@@ -5,7 +5,7 @@ Todo List
 2. <del>Implement happy path parsing of nested operations</del>
 3. Flesh out features
   <del>- Multi-digit operands</del>
-  - Decimals
+  <del>- Decimals</del>
 4. Error handling
   - Divide-by-zero
   - Unrecognized characters
