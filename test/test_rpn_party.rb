@@ -36,4 +36,10 @@ class RPNPartyTest < Minitest::Test
     calc = RPNParty.new('3 3 + 3 * 3 - 3 /')
     assert_equal 5, calc.result
   end
+
+  def test_does_not_allow_zero_division
+    assert_raises ZeroDivisionError do
+      RPNParty.new('3 0 /')
+    end
+  end
 end

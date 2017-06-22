@@ -50,6 +50,11 @@ class RPNParty
 
   def divide
     first_value, second_value = @stack.pop(2)
+
+    if second_value == 0
+      raise ZeroDivisionError, "Cannot divide #{first_value} by 0"
+    end
+
     @stack.push(first_value / second_value)
   end
 end

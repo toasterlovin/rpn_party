@@ -8,7 +8,7 @@ Todo List
   <del>- Decimals</del>
   - Allow successive calculations
 4. Error handling
-  - Divide-by-zero
+  <del>- Divide-by-zero</del>
   - Unrecognized characters
   - Operation on 0 or 1 number
 5. Implement command line utility
