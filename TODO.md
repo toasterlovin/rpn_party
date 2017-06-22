@@ -2,7 +2,7 @@ Todo List
 -
 
 1. <del>Implement happy path parsing of non-nested operations</del>
-2. Implement happy path parsing of nested operations
+2. <del>Implement happy path parsing of nested operations</del>
 3. Flesh out features
   - Multi-digit numbers
   - Decimals
