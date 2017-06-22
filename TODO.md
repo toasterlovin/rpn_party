@@ -11,6 +11,7 @@ Todo List
 4. Error handling
   <del>- Divide-by-zero</del>
   - Unrecognized characters
-  - Operation on 0 or 1 number
+  - Retrieving result with numbers left on stack
+  - Insufficient numbers on stack for operation
 5. Implement command line utility
 6. Publish gem
