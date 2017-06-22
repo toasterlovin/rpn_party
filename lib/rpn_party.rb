@@ -29,26 +29,22 @@ class RPNParty
   end
 
   def add
-    second_value = @stack.pop
-    first_value  = @stack.pop
+    second_value, first_value = @stack.pop(2)
     @result = first_value + second_value
   end
 
   def subtract
-    second_value = @stack.pop
-    first_value  = @stack.pop
+    second_value, first_value = @stack.pop(2)
     @result = first_value - second_value
   end
 
   def multiply
-    second_value = @stack.pop
-    first_value  = @stack.pop
+    second_value, first_value = @stack.pop(2)
     @result = first_value * second_value
   end
 
   def divide
-    second_value = @stack.pop
-    first_value  = @stack.pop
+    second_value, first_value = @stack.pop(2)
     @result = first_value / second_value
   end
 end
