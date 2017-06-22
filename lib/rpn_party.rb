@@ -1,5 +1,5 @@
 class RPNParty
-  def initialize(calculation)
+  def initialize(calculation = '')
     @stack = []
     evaluate(calculation)
   end

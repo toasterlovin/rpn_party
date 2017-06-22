@@ -7,7 +7,7 @@ Todo List
   <del>- Multi-digit operands</del>
   <del>- Decimals</del>
   <del>- Allow successive calculations</del>
-  - Initial calculation is optional
+  <del>- Initial calculation is optional</del>
 4. Error handling
   <del>- Divide-by-zero</del>
   - Unrecognized characters
