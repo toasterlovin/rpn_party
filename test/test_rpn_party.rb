@@ -63,6 +63,38 @@ class RPNPartyTest < Minitest::Test
     assert_equal [2, 3, 9], calc.result
   end
 
+  def test_operation_with_less_than_two_numers_on_stack
+    error = assert_raises RPNParty::InsufficientOperandsError do
+      RPNParty.new('+')
+    end
+    assert_equal "Could not perform addition. At least two values are required, but there are none.",
+                 error.message
+
+    error = assert_raises RPNParty::InsufficientOperandsError do
+      RPNParty.new('2 +')
+    end
+    assert_equal "Could not perform addition. At least two values are required, but there is only one: '2.0'.",
+                 error.message
+
+    error = assert_raises RPNParty::InsufficientOperandsError do
+      RPNParty.new('-')
+    end
+    assert_equal "Could not perform subtraction. At least two values are required, but there are none.",
+                 error.message
+
+    error = assert_raises RPNParty::InsufficientOperandsError do
+      RPNParty.new('*')
+    end
+    assert_equal "Could not perform multiplication. At least two values are required, but there are none.",
+                 error.message
+
+    error = assert_raises RPNParty::InsufficientOperandsError do
+      RPNParty.new('/')
+    end
+    assert_equal "Could not perform division. At least two values are required, but there are none.",
+                 error.message
+  end
+
   def test_does_not_allow_zero_division
     error = assert_raises ZeroDivisionError do
       RPNParty.new('3 0 /')

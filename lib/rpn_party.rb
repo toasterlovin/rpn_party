@@ -37,21 +37,29 @@ class RPNParty
   private
 
   def add
+    raise_if_insufficient_operands :addition
+
     first_value, second_value = @stack.pop(2)
     @stack.push(first_value + second_value)
   end
 
   def subtract
+    raise_if_insufficient_operands :subtraction
+
     first_value, second_value = @stack.pop(2)
     @stack.push(first_value - second_value)
   end
 
   def multiply
+    raise_if_insufficient_operands :multiplication
+
     first_value, second_value = @stack.pop(2)
     @stack.push(first_value * second_value)
   end
 
   def divide
+    raise_if_insufficient_operands :division
+
     first_value, second_value = @stack.pop(2)
 
     if second_value == 0
@@ -60,7 +68,22 @@ class RPNParty
 
     @stack.push(first_value / second_value)
   end
+
+  def raise_if_insufficient_operands(operation)
+    return if @stack.length >= 2
+
+    message = if @stack.empty?
+                "Could not perform #{operation}. At least two values are required, but there are none."
+              else
+                "Could not perform #{operation}. At least two values are required, but there is only one: '#{@stack.first}'."
+              end
+    raise RPNParty::InsufficientOperandsError,
+      message
+  end
 end
 
 class RPNParty::UnrecognizedInputError < StandardError
+end
+
+class RPNParty::InsufficientOperandsError < StandardError
 end
