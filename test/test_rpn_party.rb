@@ -72,18 +72,17 @@ class RPNPartyTest < Minitest::Test
   end
 
   def test_does_not_allow_unrecognized_input
-    assert_raises RPNParty::UnrecognizedInput do
+    assert_raises RPNParty::UnrecognizedInputError do
       RPNParty.new('3h3 1 +')
     end
 
-    assert_raises RPNParty::UnrecognizedInput do
+    assert_raises RPNParty::UnrecognizedInputError do
       RPNParty.new('3 1 +?')
     end
 
-    error = assert_raises RPNParty::UnrecognizedInput do
+    error = assert_raises RPNParty::UnrecognizedInputError do
       RPNParty.new('3h 1 /')
     end
-
     assert_equal "Unrecognized value/operator: '3h'. Valid inputs are numbers (0, 1, 2.5, -3, etc.), or '+', '-', '*', '/'.",
                  error.message
   end

@@ -28,7 +28,7 @@ class RPNParty
       when /\A\/\z/
         divide
       else
-        raise RPNParty::UnrecognizedInput,
+        raise RPNParty::UnrecognizedInputError,
           "Unrecognized value/operator: '#{token}'. Valid inputs are numbers (0, 1, 2.5, -3, etc.), or '+', '-', '*', '/'."
       end
     end
@@ -62,5 +62,5 @@ class RPNParty
   end
 end
 
-class RPNParty::UnrecognizedInput < StandardError
+class RPNParty::UnrecognizedInputError < StandardError
 end
