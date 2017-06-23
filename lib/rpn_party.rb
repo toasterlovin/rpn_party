@@ -13,7 +13,7 @@ class RPNParty
   end
 
   def evaluate(calculation)
-    calculation.scan(/\d+(?:\.\d+)?|\+|\-|\*|\//).map do |token|
+    calculation.scan(/(?:\-)?\d+(?:\.\d+)?|\+|\-|\*|\//).map do |token|
       case token
       when /\d+/
         @stack.push token.to_f

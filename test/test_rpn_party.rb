@@ -27,6 +27,11 @@ class RPNPartyTest < Minitest::Test
     assert_equal 11, calc.result
   end
 
+  def test_negative_operands
+    calc = RPNParty.new('-3 2 *')
+    assert_equal(-6, calc.result)
+  end
+
   def test_decimal_operands
     calc = RPNParty.new('2.5 2 /')
     assert_equal 1.25, calc.result
