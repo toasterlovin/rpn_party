@@ -59,14 +59,17 @@ class RPNParty
 
   def divide
     raise_if_insufficient_operands :division
+    raise_if_second_value_is_zero
 
     first_value, second_value = @stack.pop(2)
-
-    if second_value == 0
-      raise ZeroDivisionError, "Cannot divide #{first_value} by 0"
-    end
-
     @stack.push(first_value / second_value)
+  end
+
+  def raise_if_second_value_is_zero
+    return unless @stack.last.zero?
+
+    raise ZeroDivisionError,
+      "Cannot divide #{@stack[-2]} by 0."
   end
 
   def raise_if_insufficient_operands(operation)
