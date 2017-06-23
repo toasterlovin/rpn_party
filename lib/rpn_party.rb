@@ -13,20 +13,21 @@ class RPNParty
   end
 
   def evaluate(calculation)
-    calculation.scan(/(?:\-)?\d+(?:\.\d+)?|\+|\-|\*|\//).map do |token|
+    calculation.split.map do |token|
       case token
-      when /\d+/
+      when /\A(?:\-)?\d+(?:\.\d+)?\z/
         @stack.push token.to_f
-      when /\+/
+      when /\A\+\z/
         add
-      when /\-/
+      when /\A\-\z/
         subtract
-      when /\*/
+      when /\A\*\z/
         multiply
-      when /\//
+      when /\A\/\z/
         divide
       else
-        raise "Invalid input: #{token}"
+        raise RPNParty::UnrecognizedInput,
+          "Unrecognized value/operator: '#{token}'. Valid inputs are numbers (0, 1, 2.5, -3, etc.), or '+', '-', '*', '/'."
       end
     end
   end
@@ -57,4 +58,7 @@ class RPNParty
 
     @stack.push(first_value / second_value)
   end
+end
+
+class RPNParty::UnrecognizedInput < StandardError
 end

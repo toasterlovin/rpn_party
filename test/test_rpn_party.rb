@@ -63,4 +63,13 @@ class RPNPartyTest < Minitest::Test
 
     assert_equal 'Cannot divide 3.0 by 0', error.message
   end
+
+  def test_does_not_allow_unrecognized_input
+    error = assert_raises RPNParty::UnrecognizedInput do
+      RPNParty.new('3h 1 /')
+    end
+
+    assert_equal "Unrecognized value/operator: '3h'. Valid inputs are numbers (0, 1, 2.5, -3, etc.), or '+', '-', '*', '/'.",
+                 error.message
+  end
 end

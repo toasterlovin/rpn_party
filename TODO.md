@@ -11,7 +11,7 @@ Todo List
   - <del>Negative number support</del>
 4. Error handling
   - <del>Divide-by-zero</del>
-  - Unrecognized characters
+  - <del>Unrecognized characters</del>
   - Retrieving result with numbers left on stack
   - Insufficient numbers on stack for operation
 5. Implement command line utility
