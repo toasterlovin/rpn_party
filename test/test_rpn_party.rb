@@ -65,6 +65,14 @@ class RPNPartyTest < Minitest::Test
   end
 
   def test_does_not_allow_unrecognized_input
+    assert_raises RPNParty::UnrecognizedInput do
+      RPNParty.new('3h3 1 +')
+    end
+
+    assert_raises RPNParty::UnrecognizedInput do
+      RPNParty.new('3 1 +?')
+    end
+
     error = assert_raises RPNParty::UnrecognizedInput do
       RPNParty.new('3h 1 /')
     end
