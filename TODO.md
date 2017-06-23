@@ -12,7 +12,7 @@ Todo List
 4. Error handling
   - <del>Divide-by-zero</del>
   - <del>Unrecognized characters</del>
-  - Retrieving result with numbers left on stack
+  - <del>Retrieving result with numbers left on stack</del>
   - Insufficient numbers on stack for operation
 5. Implement command line utility
 6. Publish gem

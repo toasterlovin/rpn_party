@@ -56,6 +56,13 @@ class RPNPartyTest < Minitest::Test
     assert_equal 6, calc.result
   end
 
+  def test_result_when_more_than_one_numbers_are_on_stack
+    calc = RPNParty.new('2 3')
+    assert_equal [2, 3], calc.result
+    calc.evaluate('4 5 +')
+    assert_equal [2, 3, 9], calc.result
+  end
+
   def test_does_not_allow_zero_division
     error = assert_raises ZeroDivisionError do
       RPNParty.new('3 0 /')

@@ -5,10 +5,12 @@ class RPNParty
   end
 
   def result
-    if @stack.length == 1
+    if @stack.empty?
+      nil
+    elsif @stack.length == 1
       @stack[0]
     else
-      nil
+      @stack
     end
   end
 
