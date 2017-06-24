@@ -13,6 +13,8 @@ module RPNParty
         @calc.evaluate(input)
         if @calc.result.nil?
           puts 'nil'
+        elsif @calc.result.is_a? Array
+          puts @calc.result.join(', ')
         else
           puts @calc.result
         end
