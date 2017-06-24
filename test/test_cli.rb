@@ -48,7 +48,13 @@ class CLITest < Minitest::Test
   end
 
   def test_unrecognized_input
-    flunk
+    PTY.spawn('bin/rpn_party') do |output, input, pid|
+      pty = [output, input, pid]
+      clear_welcome_message(pty)
+
+      send_command pty, '2 3$ +'
+      assert_equal "Unrecognized value/operator: '3$'. Valid inputs are numbers (0, 1, 2.5, -3, etc.), or '+', '-', '*', '/'.", get_response(pty)
+    end
   end
 
   def test_zero_division

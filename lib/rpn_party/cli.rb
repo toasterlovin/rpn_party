@@ -16,7 +16,12 @@ module RPNParty
           exit
         end
 
-        @calc.evaluate(input.chomp)
+        begin
+          @calc.evaluate(input.chomp)
+        rescue RPNParty::UnrecognizedInputError => error
+          puts error.message
+        end
+
         if @calc.result.nil?
           puts 'nil'
         elsif @calc.result.is_a? Array
