@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+# Adds this gem's lib path the the Ruby load path. This allows
+# us to test RPNParty::CLI without the gem being installed.
+# Borrowed from https://stackoverflow.com/a/5294358/918507
+lib = File.expand_path(File.dirname(__FILE__) + '/../lib')
+$LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
+
+require 'rpn_party/cli'
+
+RPNParty::CLI.new

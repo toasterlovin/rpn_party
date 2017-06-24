@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
                    'lib/rpn_party/cli.rb',
                    'lib/rpn_party/errors.rb']
   s.homepage    = 'https://github.com/toasterlovin/rpn_party'
+  s.executables << 'rpn_party'
 end
