@@ -9,14 +9,14 @@ module RPNParty
       print '> '
 
       loop do
-        input = gets.chomp
+        input = gets
 
-        if input == 'q'
+        if input.nil? || input.chomp == 'q'
           puts 'Goodbye!'
           exit
         end
 
-        @calc.evaluate(input)
+        @calc.evaluate(input.chomp)
         if @calc.result.nil?
           puts 'nil'
         elsif @calc.result.is_a? Array
