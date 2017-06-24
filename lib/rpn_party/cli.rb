@@ -10,6 +10,12 @@ module RPNParty
 
       loop do
         input = gets.chomp
+
+        if input == 'q'
+          puts 'Goodbye!'
+          exit
+        end
+
         @calc.evaluate(input)
         if @calc.result.nil?
           puts 'nil'

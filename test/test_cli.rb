@@ -60,7 +60,16 @@ class CLITest < Minitest::Test
   end
 
   def test_quitting_on_q
-    flunk
+    PTY.spawn('bin/rpn_party') do |output, input, pid|
+      pty = [output, input, pid]
+      clear_welcome_message(pty)
+
+      send_command pty, 'q'
+      assert_equal 'Goodbye!', get_response(pty)
+
+      sleep 0.2
+      assert PTY.check(pid)
+    end
   end
 
   def test_quitting_on_eof
@@ -70,6 +79,7 @@ class CLITest < Minitest::Test
   private
 
   def clear_welcome_message(pty)
+    sleep 0.2
     get_response(pty)
   end
 
