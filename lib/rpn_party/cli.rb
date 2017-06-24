@@ -10,11 +10,9 @@ module RPNParty
 
       loop do
         input = gets.chomp
-        if input
-          @calc.evaluate(input)
-          puts "#=> #{@calc.result}"
-          print '> '
-        end
+        @calc.evaluate(input)
+        puts "#=> #{@calc.result}"
+        print '> '
       end
     end
   end
