@@ -117,6 +117,12 @@ For a valid expression, one of the following will be returned:
   - A `Float` when the stack has a single value.
   - An `Array` of `Floats` when the stack contains more than one value.
 
+Because RPN evaluation is implemented as a separate class from the CLI, adding
+additional interfaces (such as reading from a file) or adding RPN evaluation to
+a separate project is fairly easy. All that's required is to handle the three
+result types (`nil`, single value, and multiple values) and the three error
+types (zero division, insufficient operands, and unrecognized input).
+
 # Future Considerations
 
 - It might make sense to split `RPNParty::Calculator` and `RPNParty::CLI` into
