@@ -45,12 +45,12 @@ Goodbye!
 $
 ```
 
-Supported Commands
+#### Supported Commands
 
-- Values: integers (`5`), decimals (`5.3`), and negative numbers (`-3.5`)
+- Values: integers (`5`), decimals (`5.3`), and negative numbers (`-3.5`).
 - Operators: addition (`+`), subtraction (`-`), multiplication (`*`), and
-  division (`/`)
-- Exiting: `q` or `CTRL-D` return to the shell
+  division (`/`).
+- Exiting: `q` or `CTRL-D` return to the shell.
 
 # Architecture
 
