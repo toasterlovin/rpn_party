@@ -28,7 +28,13 @@ class CLITest < Minitest::Test
   end
 
   def test_no_values_on_stack_response
-    flunk
+    PTY.spawn('bin/rpn_party') do |output, input, pid|
+      pty = [output, input, pid]
+      clear_welcome_message(pty)
+
+      send_command pty, ''
+      assert_equal 'nil', get_response(pty)
+    end
   end
 
   def test_more_than_one_value_on_stack_response
