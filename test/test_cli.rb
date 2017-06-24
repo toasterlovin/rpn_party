@@ -115,6 +115,7 @@ class CLITest < Minitest::Test
   end
 
   def get_response(pty)
+    sleep 0.2
     pty[0].gets.chomp
   end
 
