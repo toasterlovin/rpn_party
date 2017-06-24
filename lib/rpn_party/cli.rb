@@ -12,12 +12,15 @@ module RPNParty
       print '> '
 
       loop do
-        @input = gets
+        input = gets
 
-        exit_if_quitting
+        if input.nil? || input.chomp == 'q'
+          puts 'Goodbye!'
+          exit
+        end
 
         begin
-          @calc.evaluate(@input.chomp)
+          @calc.evaluate(input.chomp)
         rescue RPNParty::UnrecognizedInputError => error
           puts error.message
         rescue ZeroDivisionError => error
@@ -33,14 +36,8 @@ module RPNParty
         else
           puts @calc.result
         end
-        print '> '
-      end
-    end
 
-    def exit_if_quitting
-      if @input.nil? || @input.chomp == 'q'
-        puts 'Goodbye!'
-        exit
+        print '> '
       end
     end
   end
