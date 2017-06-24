@@ -2,8 +2,8 @@
 
 # rpn_party
 
-rpn_party is an interactive [Reverse Polish notation] (RPN) calculator for the
-command line.
+An interactive [Reverse Polish notation] (RPN) calculator for the command line,
+written in Ruby.
 
 [Reverse Polish notation]: https://en.wikipedia.org/wiki/Reverse_Polish_notation
 
@@ -30,6 +30,7 @@ This will bring up a [REPL] that you can interact with:
 [REPL]: https://en.wikipedia.org/wiki/Read–eval–print_loop
 
 ```
+$ rpn_party
 Welcome to RPNParty!
 > 3 2 +
 5.0
@@ -44,16 +45,42 @@ Goodbye!
 $
 ```
 
-# Supported Commands
+Supported Commands
 
 - Values: integers (`5`), decimals (`5.3`), and negative numbers (`-3.5`)
-- Operators: `+` (addition), `-` (subtraction), `8` (multiplication), and `/`
-  (division)
+- Operators: addition (`+`), subtraction (`-`), multiplication (`*`), and
+  division (`/`)
 - Exiting: `q` or `CTRL-D` exit rpn_party and return to the shell
 
 # Architecture
 
-rpn_party is composed of two classes: `RPNParty::Calculator` and `RPNParty::CLI`.
+There are three components to rpn_party: 
+- An executable (`rpn_party`)
+- A class for creating a REPL (`RPNParty::CLI`)
+- A class for evaluating RPN statements (`RPNParty::Calculator`)
+
+## Executable
+
+This is simply an executable Ruby script that creates an instance of
+`RPNParty::CLI`, which creates a REPL for the user to interact with.
+
+## RPNParty::CLI
+
+This class is responsible for creating the REPL that a user interacts with when
+they invoke `rpn_party` from their shell. It is conceptually simple:
+
+1. It starts by printing:
+  - A welcome message
+  - A prompt
+2. In a continuous loop, it waits for input from the user
+3. If the user types `q` or `CTRL-D` it exits
+4. Otherwise it passes the user input to an instance of `RPNParty::Calculator`
+5. If the user input was a valid RPN expression, it prints the result:
+  - `nil` if the stack is empty
+  - Otherwise a list of numbers representing the contents of the stack
+6. If the user input was invalid, it prints:
+  - A message to the user describing the error
+  - A prompt.
 
 ## RPNParty::Calculator
 
@@ -96,24 +123,6 @@ For a valid expression, `RPNParty::Calculator` will return one of the following:
   - `nil` when the stack is empty
   - `Float` when the stack has a single value
   - `Array` of values when the stack contains more than one value
-
-## RPNParty::CLI
-
-This class is responsible for creating the REPL that a user interacts with when
-they invoke `rpn_party` from their shell. It is conceptually simple:
-
-1. It starts by printing:
-  - A welcome message
-  - A prompt
-2. In a continuous loop, it waits for input from the user
-3. If the user types `q` or `CTRL-D` it exits
-4. Otherwise it passes the user input to an instance of `RPNParty::Calculator`
-5. If the user input was a valid RPN expression, it prints the result:
-  - `nil` if the stack is empty
-  - Otherwise a list of numbers representing the contents of the stack
-6. If the user input was invalid, it prints:
-  - A message to the user describing the error
-  - A prompt.
 
 # Future Considerations
 
