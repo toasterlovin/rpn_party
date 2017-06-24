@@ -15,7 +15,16 @@ class CLITest < Minitest::Test
   end
 
   def test_consecutive_operations
-    flunk
+    PTY.spawn('bin/rpn_party') do |output, input, pid|
+      pty = [output, input, pid]
+      clear_welcome_message(pty)
+
+      send_command pty, '2 3 +'
+      assert_equal '5.0', get_response(pty)
+
+      send_command pty, '4 +'
+      assert_equal '9.0', get_response(pty)
+    end
   end
 
   def test_no_values_on_stack_response
