@@ -54,10 +54,25 @@ $
 
 # Architecture
 
-There are three components to rpn_party: 
-- An executable (`rpn_party`)
-- A class for creating a REPL (`RPNParty::CLI`)
-- A class for evaluating RPN statements (`RPNParty::Calculator`)
+In making an interactive command line RPN calculator, there seem to be three
+areas of responsibility:
+
+- Providing an executable which the user can install on their system.
+- Handling user interaction once the calculator is running.
+- Parsing and evaluating RPN expressions that the user inputs.
+
+These areas of responsibility are handled in rpn_party by (respectively):
+
+- An executable named `rpn_party`
+- A class named `RPNParty::CLI`
+- A class named `RPNParty::Calculator`
+
+An additional benefit of separating RPN expression evaluation into a separate
+class is that it becomes quite simple to create additional interfaces to
+rpn_party (such as, for example, reading RPN expressions from a file) or to
+implement RPN evaluation in a separate codebase. All that's required is to
+handle three result types (`nil`, single value, and multiple values) and three
+error types (zero division, insufficient operands, and unrecognized input).
 
 ## rpn_party
 
@@ -116,12 +131,6 @@ For a valid expression, one of the following will be returned:
   - `nil` when the stack is empty.
   - A `Float` when the stack has a single value.
   - An `Array` of `Floats` when the stack contains more than one value.
-
-Because RPN evaluation is implemented as a separate class from the CLI, adding
-additional interfaces (such as reading from a file) or adding RPN evaluation to
-a separate project is fairly easy. All that's required is to handle the three
-result types (`nil`, single value, and multiple values) and the three error
-types (zero division, insufficient operands, and unrecognized input).
 
 # Future Considerations
 
