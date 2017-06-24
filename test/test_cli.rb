@@ -15,7 +15,27 @@ class CLITest < Minitest::Test
     end
   end
 
-  def test_erroneous_input
+  def test_consecutive_operations
+    flunk
+  end
+
+  def test_no_values_on_stack_response
+    flunk
+  end
+
+  def test_more_than_one_value_on_stack_response
+    flunk
+  end
+
+  def test_unrecognized_input
+    flunk
+  end
+
+  def test_zero_division
+    flunk
+  end
+
+  def test_insufficient_values_on_stack
     flunk
   end
 
