@@ -20,6 +20,8 @@ module RPNParty
           @calc.evaluate(input.chomp)
         rescue RPNParty::UnrecognizedInputError => error
           puts error.message
+        rescue ZeroDivisionError => error
+          puts error.message
         end
 
         if @calc.result.nil?

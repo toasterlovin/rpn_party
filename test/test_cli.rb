@@ -58,7 +58,13 @@ class CLITest < Minitest::Test
   end
 
   def test_zero_division
-    flunk
+    PTY.spawn('bin/rpn_party') do |output, input, pid|
+      pty = [output, input, pid]
+      clear_welcome_message(pty)
+
+      send_command pty, '3 0 /'
+      assert_equal "Cannot divide 3.0 by 0.", get_response(pty)
+    end
   end
 
   def test_insufficient_values_on_stack
