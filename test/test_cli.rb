@@ -7,8 +7,7 @@ class CLITest < Minitest::Test
   def test_basic_operation
     PTY.spawn('bin/rpn_party') do |output, input, pid|
       pty = [output, input, pid]
-
-      assert_equal 'Welcome to RPNParty!', get_response(pty)
+      clear_welcome_message(pty)
 
       send_command pty, '2 3 +'
       assert_equal '5.0', get_response(pty)
@@ -48,6 +47,10 @@ class CLITest < Minitest::Test
   end
 
   private
+
+  def clear_welcome_message(pty)
+    get_response(pty)
+  end
 
   def get_response(pty)
     pty[0].gets.chomp
