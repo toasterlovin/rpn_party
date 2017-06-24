@@ -31,7 +31,7 @@ module RPNParty
         when /\A\/\z/
           divide
         else
-          raise RPNParty::UnrecognizedInputError,
+          raise UnrecognizedInputError,
             "Unrecognized value/operator: '#{token}'. Valid inputs are numbers (0, 1, 2.5, -3, etc.), or '+', '-', '*', '/'."
         end
       end
@@ -83,7 +83,7 @@ module RPNParty
                 else
                   "Could not perform #{operation}. At least two values are required, but there is only one: '#{@stack.first}'."
                 end
-      raise RPNParty::InsufficientOperandsError,
+      raise InsufficientOperandsError,
         message
     end
   end
