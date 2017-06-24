@@ -11,7 +11,7 @@ class CLITest < Minitest::Test
       assert_equal 'Welcome to RPNParty!', get_response(pty)
 
       send_command pty, '2 3 +'
-      assert_equal '5.0', get_result(pty)
+      assert_equal '5.0', get_response(pty)
     end
   end
 
@@ -36,9 +36,5 @@ class CLITest < Minitest::Test
   def send_command(pty, command)
     pty[1].puts command
     pty[0].gets
-  end
-
-  def get_result(pty)
-    get_response(pty).gsub('#=> ', '')
   end
 end

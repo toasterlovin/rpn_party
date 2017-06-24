@@ -11,7 +11,7 @@ module RPNParty
       loop do
         input = gets.chomp
         @calc.evaluate(input)
-        puts "#=> #{@calc.result}"
+        puts @calc.result
         print '> '
       end
     end
