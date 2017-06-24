@@ -76,7 +76,7 @@ they invoke `rpn_party` from their shell. It is conceptually simple:
 5. If the user input was a valid RPN expression, it prints either `nil` (if the
    stack is empty), or a list of numbers representing the contents of the stack.
 6. If the user input was invalid, it prints a message describing the error and
-   a prompt.
+   a new prompt.
 
 ## RPNParty::Calculator
 
@@ -92,30 +92,30 @@ impemented as a stack:
 
 So, given an RPN expression like `3 2 5 * +`, here is what happens:
 
-- `3` is pushed to the stack
-- `2` is pushed to the stack
-- `5` is pusehd to the stack
-- `2` and `5` are popped from the stack and multiplied
-- `10`, the result, is pushed to the stack
-- `10` and `3` are popped from the stack and added
-- `13`, the result, is pushed to the stack
+- `3` is pushed to the stack.
+- `2` is pushed to the stack.
+- `5` is pushed to the stack.
+- `2` and `5` are popped from the stack and multiplied.
+- `10`, the result, is pushed to the stack.
+- `10` and `3` are popped from the stack and added.
+- `13`, the result, is pushed to the stack.
 - The expression is done being evaluated and the result is `13`.
 
-An error for the following cases:
+An error will be raised for the following cases:
 
 - `ZeroDivisionError` is raised when attempting to divide a number by zero,
   for example `3 0 /`.
 - `RPNParty::InsufficientOperandsError` is raised when attempting to evaluate
   an operator with less than 2 values on the stack, for example `3 +`.
 - `RPNParty::UnrecognizedInputError` is raised when one of the arguments in an
-  expression is neither a number nor one of the supported operators (`+`, `-`,
+  expression is neither a number nor a supported operator (`+`, `-`,
   `*`, `/`).
 
 For a valid expression, one of the following will be returned:
 
-  - `nil` when the stack is empty
-  - `Float` when the stack has a single value
-  - `Array` of `Float`s when the stack contains more than one value
+  - `nil` when the stack is empty.
+  - A `Float` when the stack has a single value.
+  - An `Array` of `Floats` when the stack contains more than one value.
 
 # Future Considerations
 
@@ -124,12 +124,12 @@ For a valid expression, one of the following will be returned:
   easier for other people to include just `RPNParty::Calculator` in gems that
   need a way to evaluate Reverse Polish notation expressions.
 - The `RPNParty::CLI` tests are excellent in the sense that they are black box
-  tests which verify that the program works by actually instantiating `rpn_party`
-  and interacting with it just like a user would. But for this reason, they
-  sometimes suffer from async timing issues. It would be nice to add a test
-  helper method which intelligently retries assertions for either a set amount
-  of time or for a set number of attempts. At the moment, the async timing
-  issue is being addressed by sleeping the test process for (relatively) short
-  periods of time to ensure that the app process has time to finish. This isn't
-  that big of a deal because the test suite is relatively small, but could
-  become an issue in the future.
+  tests which actually instantiate `rpn_party` and interact with it in the exact
+  same way that a user would. But for this reason, they sometimes suffer from
+  async timing issues. It would be nice to add a test helper method which
+  intelligently retries assertions for either a set amount of time or for a set
+  number of attempts. At the moment, this timing issue is being addressed by
+  sleeping the test process for (relatively) short periods of time to ensure
+  that the app process has time to finish. This isn't that big of a deal
+  because the test suite is relatively small, but could become an issue in the
+  future.
