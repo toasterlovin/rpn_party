@@ -68,7 +68,17 @@ class CLITest < Minitest::Test
   end
 
   def test_insufficient_values_on_stack
-    flunk
+    PTY.spawn('bin/rpn_party') do |output, input, pid|
+      pty = [output, input, pid]
+      clear_welcome_message(pty)
+
+      send_command pty, '+'
+      assert_equal "Could not perform addition. At least two values are required, but there are none.", get_response(pty)
+
+      send_command pty, '3 +'
+      output.gets
+      assert_equal "Could not perform addition. At least two values are required, but there is only one: '3.0'.", get_response(pty)
+    end
   end
 
   def test_quitting_on_q

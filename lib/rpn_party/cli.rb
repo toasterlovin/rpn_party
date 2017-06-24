@@ -22,6 +22,8 @@ module RPNParty
           puts error.message
         rescue ZeroDivisionError => error
           puts error.message
+        rescue RPNParty::InsufficientOperandsError => error
+          puts error.message
         end
 
         if @calc.result.nil?
