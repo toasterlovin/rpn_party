@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require 'rpn_party/cli'
-require 'open3'
 require 'pty'
 
 class CLITest < Minitest::Test
