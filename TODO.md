@@ -14,5 +14,5 @@ Todo List
   - <del>Unrecognized characters</del>
   - <del>Retrieving result with numbers left on stack</del>
   - <del>Insufficient numbers on stack for operation</del>
-5. Implement command line utility
+5. <del>Implement command line utility</del>
 6. Publish gem
