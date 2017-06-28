@@ -109,17 +109,26 @@ class CLITest < Minitest::Test
   private
 
   def clear_welcome_message(pty)
-    sleep 0.2
     get_response(pty)
   end
 
   def get_response(pty)
-    sleep 0.2
-    pty[0].gets.chomp
+    start = Time.now
+    try_for = 2
+    response = nil
+
+    loop do
+      response = pty[0].gets.chomp
+      break if response || Time.now > start + try_for
+
+      sleep 0.1
+    end
+
+    response
   end
 
   def send_command(pty, command)
     pty[1].puts command
-    pty[0].gets
+    get_response(pty)
   end
 end
