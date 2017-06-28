@@ -75,7 +75,6 @@ class CLITest < Minitest::Test
       assert_equal "Could not perform addition. At least two values are required, but there are none.", get_response(pty)
 
       send_command pty, '3 +'
-      output.gets
       assert_equal "Could not perform addition. At least two values are required, but there is only one: '3.0'.", get_response(pty)
     end
   end
@@ -114,7 +113,7 @@ class CLITest < Minitest::Test
 
   def get_response(pty)
     start = Time.now
-    try_for = 2
+    try_for = 1
     response = nil
 
     loop do
@@ -128,7 +127,20 @@ class CLITest < Minitest::Test
   end
 
   def send_command(pty, command)
+    wait_for_prompt(pty)
     pty[1].puts command
     get_response(pty)
+  end
+
+  def wait_for_prompt(pty)
+    start = Time.now
+    try_for = 1
+
+    loop do
+      prompt = pty[0].getc
+      break if prompt == '>' || Time.now > start + try_for
+
+      sleep 0.1
+    end
   end
 end
